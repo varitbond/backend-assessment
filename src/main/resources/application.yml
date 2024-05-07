@@ -1,0 +1,67 @@
+spring:
+  application:
+    name: Backend Assessment
+  datasource:
+    url: jdbc:mysql://localhost:3306/backend
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  tomcat:
+    max-wait: 20000
+    max-active: 50
+    max-idle: 20
+    min-idle: 15
+  flyway:
+    baselineOnMigrate: true
+  security:
+    oauth2:
+      client:
+        provider:
+          auth0:
+            issuer-uri: https://dev-yg.us.auth0.com/
+            authorization-uri: https://dev-yg.us.auth0.com/authorize
+            token-uri: https://dev-yg.us.auth0.com/oauth/token
+            user-info-uri: https://dev-yg.us.auth0.com/userinfo
+            jwk-set-uri: https://dev-yg.us.auth0.com/.well-known/jwks.json
+            user-info-authentication-method: form
+        registration:
+          auth0:
+            client-id: H9F6QG5SzTKMv0tbmgxLj9LjG1EKVllA
+            redirect-uri: http://localhost:3000/callback
+            logout-url: http://localhost:3000
+            authorization-grant-type: authorization_code
+            scope:
+              - openid
+              - profile
+              - email
+            client-name: Auth0
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-yg.us.auth0.com/
+          jwk-set-uri: https://dev-yg.us.auth0.com/.well-known/jwks.json
+          jws-algorithms: RS256
+
+server:
+  port: 3000
+  max-http-header-size: 10mb
+
+okta:
+  oauth2:
+    issuer: https://dev-yg.us.auth0.com/
+    client-id: H9F6QG5SzTKMv0tbmgxLj9LjG1EKVllA
+
+
+
+
+
+logging:
+  level:
+    root: DEBUG
+
+
+
+
+
+

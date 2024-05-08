@@ -2,23 +2,27 @@ package com.varit.backend.assessment.model.post;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.varit.backend.assessment.validation.CreateGroup;
-import com.varit.backend.assessment.validation.PatchGroup;
-import com.varit.backend.assessment.validation.UpdateGroup;
+import com.varit.backend.assessment.validation.UpdateAndPatchGroup;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Post {
-    @NotNull(groups = {UpdateGroup.class, PatchGroup.class})
+    @NotNull(groups = UpdateAndPatchGroup.class)
     private Integer id;
-    @NotNull(groups = {CreateGroup.class, UpdateGroup.class})
+    @NotNull
     private Integer userId;
-    @NotBlank(groups = {CreateGroup.class, UpdateGroup.class})
+    @NotBlank
     private String title;
-    @NotBlank(groups = {CreateGroup.class, UpdateGroup.class})
+    @NotBlank
     private String body;
 }

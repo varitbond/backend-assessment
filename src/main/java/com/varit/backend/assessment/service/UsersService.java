@@ -3,6 +3,7 @@ package com.varit.backend.assessment.service;
 import com.varit.backend.assessment.mapper.UserMapper;
 import com.varit.backend.assessment.mapper.UsersRecordMapper;
 import com.varit.backend.assessment.model.jooq.tables.records.UsersRecord;
+import com.varit.backend.assessment.model.create.resource.CreateResourceResponse;
 import com.varit.backend.assessment.model.user.User;
 import com.varit.backend.assessment.repository.UsersRepository;
 import lombok.AllArgsConstructor;
@@ -44,10 +45,11 @@ public class UsersService {
         usersRepository.createOrUpdateUser(usersRecord);
     }
 
-    public void createUser(User user) {
-        var usersRecord = new UsersRecord();
+    public CreateResourceResponse createUser(User user) {
+        var usersRecord = usersRepository.getNewUsersRecord();
         usersRecordMapper.userMapToUserRecord(user, usersRecord);
-        usersRepository.createOrUpdateUser(usersRecord);
+        var id = usersRepository.createOrUpdateUser(usersRecord);
+        return new CreateResourceResponse(id);
     }
 
     public void deleteUser(int id) {

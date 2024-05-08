@@ -1,13 +1,13 @@
 package com.varit.backend.assessment.controller;
 
 import com.varit.backend.assessment.model.post.Post;
+import com.varit.backend.assessment.model.create.resource.CreateResourceResponse;
 import com.varit.backend.assessment.model.response.ResponseModel;
 import com.varit.backend.assessment.model.response.ResponseStatus;
 import com.varit.backend.assessment.model.response.ResponseStatusEnum;
 import com.varit.backend.assessment.service.PostService;
-import com.varit.backend.assessment.validation.CreateGroup;
-import com.varit.backend.assessment.validation.PatchGroup;
-import com.varit.backend.assessment.validation.UpdateGroup;
+import com.varit.backend.assessment.validation.UpdateAndPatchGroup;
+import jakarta.validation.groups.Default;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,12 +43,12 @@ public class PostsController {
     }
 
     @GetMapping("/get/by-userid")
-    public ResponseEntity<ResponseModel<Post>> getPostByUserId(@RequestParam(name = "userId") int userId) {
-        var post = postService.getPostByUserId(userId);
+    public ResponseEntity<ResponseModel<List<Post>>> getPostByUserId(@RequestParam(name = "userId") int userId) {
+        var posts = postService.getPostByUserId(userId);
         var status = new ResponseStatus(ResponseStatusEnum.SUCCESS);
-        var response = new ResponseModel<Post>();
+        var response = new ResponseModel<List<Post>>();
         response.setStatus(status);
-        response.setData(post);
+        response.setData(posts);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
@@ -63,7 +63,7 @@ public class PostsController {
     }
 
     @PatchMapping("/patch")
-    public ResponseEntity<ResponseModel<Void>> patchPost(@RequestBody @Validated(PatchGroup.class) Post post) {
+    public ResponseEntity<ResponseModel<Void>> patchPost(@RequestBody @Validated(UpdateAndPatchGroup.class) Post post) {
         postService.patchPost(post);
         var status = new ResponseStatus(ResponseStatusEnum.SUCCESS);
         ResponseModel<Void> response = new ResponseModel<>();
@@ -72,7 +72,7 @@ public class PostsController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<ResponseModel<Void>> updatePost(@RequestBody @Validated(UpdateGroup.class) Post post) {
+    public ResponseEntity<ResponseModel<Void>> updatePost(@RequestBody @Validated({Default.class, UpdateAndPatchGroup.class}) Post post) {
         postService.updatePost(post);
         var status = new ResponseStatus(ResponseStatusEnum.SUCCESS);
         ResponseModel<Void> response = new ResponseModel<>();
@@ -90,12 +90,12 @@ public class PostsController {
     }
 
     @PostMapping(value = "/create")
-    public ResponseEntity<ResponseModel<Post>> createUser(@RequestBody @Validated(CreateGroup.class) Post post) {
-        postService.createPost(post);
+    public ResponseEntity<ResponseModel<CreateResourceResponse>> createPost(@RequestBody @Validated(Default.class) Post post) {
+        var createResponse = postService.createPost(post);
         var status = new ResponseStatus(ResponseStatusEnum.SUCCESS);
-        ResponseModel<Post> response = new ResponseModel<>();
+        ResponseModel<CreateResourceResponse> response = new ResponseModel<>();
         response.setStatus(status);
-        response.setData(post);
+        response.setData(createResponse);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }

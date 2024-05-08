@@ -1,14 +1,14 @@
 package com.varit.backend.assessment.controller;
 
 
+import com.varit.backend.assessment.model.create.resource.CreateResourceResponse;
 import com.varit.backend.assessment.model.response.ResponseModel;
 import com.varit.backend.assessment.model.response.ResponseStatus;
 import com.varit.backend.assessment.model.response.ResponseStatusEnum;
 import com.varit.backend.assessment.model.user.User;
 import com.varit.backend.assessment.service.UsersService;
-import com.varit.backend.assessment.validation.CreateGroup;
-import com.varit.backend.assessment.validation.PatchGroup;
-import com.varit.backend.assessment.validation.UpdateGroup;
+import com.varit.backend.assessment.validation.UpdateAndPatchGroup;
+import jakarta.validation.groups.Default;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,7 +53,7 @@ public class UsersController {
     }
 
     @PatchMapping("/patch")
-    public ResponseEntity<ResponseModel<Void>> patchUser(@RequestBody @Validated(PatchGroup.class) User user) {
+    public ResponseEntity<ResponseModel<Void>> patchUser(@RequestBody @Validated(UpdateAndPatchGroup.class) User user) {
         usersService.patchUser(user);
         var status = new ResponseStatus(ResponseStatusEnum.SUCCESS);
         ResponseModel<Void> response = new ResponseModel<>();
@@ -62,7 +62,7 @@ public class UsersController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<ResponseModel<Void>> updateUser(@RequestBody @Validated(UpdateGroup.class) User user) {
+    public ResponseEntity<ResponseModel<Void>> updateUser(@RequestBody @Validated({Default.class, UpdateAndPatchGroup.class}) User user) {
         usersService.updateUser(user);
         var status = new ResponseStatus(ResponseStatusEnum.SUCCESS);
         ResponseModel<Void> response = new ResponseModel<>();
@@ -80,12 +80,12 @@ public class UsersController {
     }
 
     @PostMapping(value = "/create")
-    public ResponseEntity<ResponseModel<User>> createUser(@RequestBody @Validated(CreateGroup.class) User user) {
-        usersService.createUser(user);
+    public ResponseEntity<ResponseModel<CreateResourceResponse>> createUser(@RequestBody @Validated(Default.class) User user) {
+        var createResponse =  usersService.createUser(user);
         var status = new ResponseStatus(ResponseStatusEnum.SUCCESS);
-        ResponseModel<User> response = new ResponseModel<>();
+        ResponseModel<CreateResourceResponse> response = new ResponseModel<>();
         response.setStatus(status);
-        response.setData(user);
+        response.setData(createResponse);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }

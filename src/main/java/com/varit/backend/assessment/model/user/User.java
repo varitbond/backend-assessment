@@ -4,24 +4,28 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.varit.backend.assessment.model.user.address.Address;
 import com.varit.backend.assessment.model.user.company.Company;
-import com.varit.backend.assessment.validation.CreateGroup;
-import com.varit.backend.assessment.validation.PatchGroup;
-import com.varit.backend.assessment.validation.UpdateGroup;
+import com.varit.backend.assessment.validation.UpdateAndPatchGroup;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class User {
-    @NotNull(groups = {UpdateGroup.class, PatchGroup.class})
+    @NotNull(groups = UpdateAndPatchGroup.class)
     private Integer id;
-    @NotBlank(groups = {CreateGroup.class, UpdateGroup.class})
+    @NotBlank
     private String name;
-    @NotBlank(groups = {CreateGroup.class, UpdateGroup.class})
+    @NotBlank
     private String username;
-    @NotBlank(groups = {CreateGroup.class, UpdateGroup.class})
+    @NotBlank
     private String email;
     private Address address;
     private String phone;

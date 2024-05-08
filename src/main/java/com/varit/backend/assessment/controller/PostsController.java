@@ -1,7 +1,7 @@
 package com.varit.backend.assessment.controller;
 
-import com.varit.backend.assessment.model.post.Post;
 import com.varit.backend.assessment.model.create.resource.CreateResourceResponse;
+import com.varit.backend.assessment.model.post.Post;
 import com.varit.backend.assessment.model.response.ResponseModel;
 import com.varit.backend.assessment.model.response.ResponseStatus;
 import com.varit.backend.assessment.model.response.ResponseStatusEnum;

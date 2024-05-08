@@ -5,7 +5,6 @@ package com.varit.backend.assessment.model.jooq;
 
 
 import com.varit.backend.assessment.model.jooq.tables.Posts;
-
 import org.jooq.Index;
 import org.jooq.OrderField;
 import org.jooq.impl.DSL;

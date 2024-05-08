@@ -1,12 +1,11 @@
 package com.varit.backend.assessment.service;
 
 import com.varit.backend.assessment.exception.BusinessException;
+import com.varit.backend.assessment.model.create.resource.CreateResourceResponse;
 import com.varit.backend.assessment.model.jooq.tables.records.PostsRecord;
 import com.varit.backend.assessment.model.post.Post;
-import com.varit.backend.assessment.model.create.resource.CreateResourceResponse;
 import com.varit.backend.assessment.repository.PostsRepository;
 import com.varit.backend.assessment.repository.UsersRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

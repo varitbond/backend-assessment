@@ -6,13 +6,12 @@ package com.varit.backend.assessment.model.jooq;
 
 import com.varit.backend.assessment.model.jooq.tables.Posts;
 import com.varit.backend.assessment.model.jooq.tables.Users;
-
-import java.util.Arrays;
-import java.util.List;
-
 import org.jooq.Catalog;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 /**

@@ -2,8 +2,8 @@ package com.varit.backend.assessment.service;
 
 import com.varit.backend.assessment.mapper.UserMapper;
 import com.varit.backend.assessment.mapper.UsersRecordMapper;
-import com.varit.backend.assessment.model.jooq.tables.records.UsersRecord;
 import com.varit.backend.assessment.model.create.resource.CreateResourceResponse;
+import com.varit.backend.assessment.model.jooq.tables.records.UsersRecord;
 import com.varit.backend.assessment.model.user.User;
 import com.varit.backend.assessment.repository.UsersRepository;
 import lombok.AllArgsConstructor;

@@ -1,8 +1,8 @@
 package com.varit.backend.assessment.controller;
 
 import com.varit.backend.assessment.exception.DataNotFoundException;
-import com.varit.backend.assessment.model.post.Post;
 import com.varit.backend.assessment.model.create.resource.CreateResourceResponse;
+import com.varit.backend.assessment.model.post.Post;
 import com.varit.backend.assessment.service.PostService;
 import com.varit.backend.assessment.testutil.TestUtils;
 import org.junit.jupiter.api.Test;

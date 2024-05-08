@@ -7,10 +7,6 @@ package com.varit.backend.assessment.model.jooq.tables;
 import com.varit.backend.assessment.model.jooq.Backend;
 import com.varit.backend.assessment.model.jooq.Keys;
 import com.varit.backend.assessment.model.jooq.tables.records.UsersRecord;
-
-import java.math.BigDecimal;
-import java.util.function.Function;
-
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Function15;
@@ -28,6 +24,9 @@ import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
+
+import java.math.BigDecimal;
+import java.util.function.Function;
 
 
 /**

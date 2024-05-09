@@ -11,7 +11,7 @@ There 2 API routes
 * '/posts’ to access posts data
 
 
-### Every route got mechanisms as below
+### Every route has mechanisms as follows
 
 * Get a resource GET /get/{id}
 

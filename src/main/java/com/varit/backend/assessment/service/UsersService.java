@@ -33,6 +33,12 @@ public class UsersService {
         return userMapper.usersRecordToUser(usersRecordDao);
     }
 
+    public List<User> getUserByPostId(int postId) {
+        List<UsersRecord> usersRecordListDao = usersRepository.getUserByPostId(postId);
+        log.info("Done query users by post id then start mapping records to dto.");
+        return userMapper.usersRecordListToUserList(usersRecordListDao);
+    }
+
     public void patchUser(User user) {
         var usersRecord = usersRepository.getUserById(user.getId());
         usersRecordMapper.userMapToUserRecordIgnoreNull(user, usersRecord);

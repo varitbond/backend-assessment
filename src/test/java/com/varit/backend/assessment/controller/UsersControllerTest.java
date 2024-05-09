@@ -82,6 +82,32 @@ class UsersControllerTest {
 
     @Test
     @WithMockUser(username = "user", authorities = {"USER"})
+    void testGetUserByPostId_Success() throws Exception {
+        // Mock
+        String token = "mocked_jwt_token";
+        List<User> users = Arrays.asList(getUser1());
+        when(usersService.getUserByPostId(1)).thenReturn(users);
+        // Call & Verify
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/get/by-postid?postId=1")
+                        .header("Authorization", "Bearer " + token))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.status.description").value("Success"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.data.length()").value(1))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.data[0].id").value(1))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.data[0].username").value("johndoe"));
+    }
+
+    @Test
+    @WithAnonymousUser
+    void testGetUserByPostId_Unauthorized() throws Exception {
+        // Call & Verify
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/get/by-postid?postId=1")
+                        .header("Authorization", "Bearer "))
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
+    }
+
+    @Test
+    @WithMockUser(username = "user", authorities = {"USER"})
     void testGetAllUsers_Success() throws Exception {
         // Mock
         String token = "mocked_jwt_token";

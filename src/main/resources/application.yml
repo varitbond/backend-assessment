@@ -52,16 +52,6 @@ okta:
     issuer: https://dev-yg.us.auth0.com/
     client-id: H9F6QG5SzTKMv0tbmgxLj9LjG1EKVllA
 
-
-
-
-
 logging:
   level:
     root: DEBUG
-
-
-
-
-
-

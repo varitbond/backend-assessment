@@ -39,7 +39,12 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(antMatcher("/callback")).permitAll()
+                        .requestMatchers(
+                                antMatcher("/callback"),
+                                antMatcher("/swagger-ui/**"),
+                                antMatcher("/swagger-ui.html"),
+                                antMatcher("/v3/api-docs/**")
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .oauth2Login(oauth2 -> oauth2
@@ -47,6 +52,7 @@ public class SecurityConfig {
                                 .authorizationRequestResolver(this.authorizationRequestResolver(clientRegistrationRepository))
                         )
                 )
+                .logout(Customizer.withDefaults())
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt
                                 .jwkSetUri(jwkSetUri)
@@ -70,7 +76,7 @@ public class SecurityConfig {
         authorizationRequestResolver.setAuthorizationRequestCustomizer(
                 authorizationRequestCustomizer());
 
-        return  authorizationRequestResolver;
+        return authorizationRequestResolver;
     }
 
     private Consumer<OAuth2AuthorizationRequest.Builder> authorizationRequestCustomizer() {

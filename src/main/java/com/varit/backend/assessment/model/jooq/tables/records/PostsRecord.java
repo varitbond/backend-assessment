@@ -5,6 +5,7 @@ package com.varit.backend.assessment.model.jooq.tables.records;
 
 
 import com.varit.backend.assessment.model.jooq.tables.Posts;
+
 import org.jooq.Field;
 import org.jooq.Record1;
 import org.jooq.Record4;

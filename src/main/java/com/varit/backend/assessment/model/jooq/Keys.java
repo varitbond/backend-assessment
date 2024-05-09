@@ -8,6 +8,7 @@ import com.varit.backend.assessment.model.jooq.tables.Posts;
 import com.varit.backend.assessment.model.jooq.tables.Users;
 import com.varit.backend.assessment.model.jooq.tables.records.PostsRecord;
 import com.varit.backend.assessment.model.jooq.tables.records.UsersRecord;
+
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;

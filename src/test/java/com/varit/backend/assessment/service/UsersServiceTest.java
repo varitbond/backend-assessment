@@ -69,6 +69,22 @@ class UsersServiceTest {
     }
 
     @Test
+    void testGetUserByPostId_Success() {
+        // Mock
+        UsersRecord userRecord1 = new UsersRecord();
+        userRecord1.setId(1);
+        userRecord1.setName("John");
+        when(usersRepository.getUserByPostId(1)).thenReturn(Arrays.asList(userRecord1));
+        // Call
+        List<User> userList = usersService.getUserByPostId(1);
+        // Verify
+        assertNotNull(userList);
+        assertEquals(1, userList.size());
+        assertEquals(1, userList.get(0).getId());
+        assertEquals("John", userList.get(0).getName());
+    }
+
+    @Test
     void testPatchUser_Success() {
         // Mock
         UsersRecord userRecord1 = new UsersRecord();

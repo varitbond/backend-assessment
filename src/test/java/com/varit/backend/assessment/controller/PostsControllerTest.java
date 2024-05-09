@@ -45,7 +45,7 @@ class PostsControllerTest {
     void testGetAllPosts_Success() throws Exception {
         // Mock
         String token = "mocked_jwt_token";
-        List<Post> posts = Arrays.asList(new Post(1, 1,"Test Title", "Test Body"), new Post(2, 2,"Test Title", "Test Body"));
+        List<Post> posts = Arrays.asList(new Post(1, 1, "Test Title", "Test Body"), new Post(2, 2, "Test Title", "Test Body"));
         when(postService.getAllPosts()).thenReturn(posts);
         // Call & Verify
         mockMvc.perform(MockMvcRequestBuilders.get("/posts/get")
@@ -64,7 +64,7 @@ class PostsControllerTest {
     void testGetAllPosts_Unauthorized() throws Exception {
         // Call & Verify
         mockMvc.perform(MockMvcRequestBuilders.get("/posts/get")
-                .header("Authorization", "Bearer "))
+                        .header("Authorization", "Bearer "))
                 .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 
@@ -73,7 +73,7 @@ class PostsControllerTest {
     void testGetPostById_Success() throws Exception {
         // Mock
         String token = "mocked_jwt_token";
-        when(postService.getPostById(1)).thenReturn(new Post(1, 1,"Test Title", "Test Body"));
+        when(postService.getPostById(1)).thenReturn(new Post(1, 1, "Test Title", "Test Body"));
         // Call & Verify
         mockMvc.perform(MockMvcRequestBuilders.get("/posts/get/1")
                         .header("Authorization", "Bearer " + token))
@@ -152,7 +152,7 @@ class PostsControllerTest {
     void testPatchPost_Success() throws Exception {
         // Mock
         String token = "mocked_jwt_token";
-        Post post = new Post(1, 1,"Test Title", "Test Body");
+        Post post = new Post(1, 1, "Test Title", "Test Body");
         doNothing().when(postService).patchPost(any(Post.class));
         // Call & Verify
         mockMvc.perform(MockMvcRequestBuilders.patch("/posts/patch")
@@ -169,7 +169,7 @@ class PostsControllerTest {
     void testPatchPost_MissingId() throws Exception {
         // Mock
         String token = "mocked_jwt_token";
-        Post post = new Post(null, 1,"Test Title", "Test Body");
+        Post post = new Post(null, 1, "Test Title", "Test Body");
         // Call & Verify
         mockMvc.perform(MockMvcRequestBuilders.patch("/posts/patch")
                         .with(csrf())
@@ -185,7 +185,7 @@ class PostsControllerTest {
     @WithAnonymousUser
     void testPatchPost_Unauthorized() throws Exception {
         // Mock
-        Post post = new Post(1, 1,"Test Title", "Test Body");
+        Post post = new Post(1, 1, "Test Title", "Test Body");
         // Call & Verify
         mockMvc.perform(MockMvcRequestBuilders.patch("/posts/patch")
                         .with(csrf())
@@ -199,7 +199,7 @@ class PostsControllerTest {
     void testUpdatePost_Success() throws Exception {
         // Mock
         String token = "mocked_jwt_token";
-        Post post = new Post(1, 1,"Test Title", "Test Body");
+        Post post = new Post(1, 1, "Test Title", "Test Body");
         doNothing().when(postService).updatePost(any(Post.class));
         // Call & Verify
         mockMvc.perform(MockMvcRequestBuilders.put("/posts/update")
@@ -216,7 +216,7 @@ class PostsControllerTest {
     void testUpdatePost_MissingIdAndUserId() throws Exception {
         // Mock
         String token = "mocked_jwt_token";
-        Post post = new Post(null, null,"Test Title", "Test Body");
+        Post post = new Post(null, null, "Test Title", "Test Body");
         // Call & Verify
         mockMvc.perform(MockMvcRequestBuilders.put("/posts/update")
                         .with(csrf())
@@ -232,7 +232,7 @@ class PostsControllerTest {
     @WithAnonymousUser
     void testUpdatePost_Unauthorized() throws Exception {
         // Mock
-        Post post = new Post(1, 1,"Test Title", "Test Body");
+        Post post = new Post(1, 1, "Test Title", "Test Body");
         // Call & Verify
         mockMvc.perform(MockMvcRequestBuilders.put("/posts/update")
                         .with(csrf())
@@ -269,7 +269,7 @@ class PostsControllerTest {
     void testCreatePost_Success() throws Exception {
         // Mock
         String token = "mocked_jwt_token";
-        Post post = new Post(null, 1,"Test Title", "Test Body");
+        Post post = new Post(null, 1, "Test Title", "Test Body");
         when(postService.createPost(any(Post.class))).thenReturn(new CreateResourceResponse(1));
         // Call & Verify
         mockMvc.perform(MockMvcRequestBuilders.post("/posts/create")
@@ -287,7 +287,7 @@ class PostsControllerTest {
     void testCreatePost_MissingUserId() throws Exception {
         // Mock
         String token = "mocked_jwt_token";
-        Post post = new Post(null, null,"Test Title", "Test Body");
+        Post post = new Post(null, null, "Test Title", "Test Body");
         // Call & Verify
         mockMvc.perform(MockMvcRequestBuilders.post("/posts/create")
                         .with(csrf())
@@ -303,7 +303,7 @@ class PostsControllerTest {
     @WithAnonymousUser
     void testCreatePost_Unauthorized() throws Exception {
         // Mock
-        Post post = new Post(1, 1,"Test Title", "Test Body");
+        Post post = new Post(1, 1, "Test Title", "Test Body");
         // Call & Verify
         mockMvc.perform(MockMvcRequestBuilders.post("/posts/create")
                         .with(csrf())

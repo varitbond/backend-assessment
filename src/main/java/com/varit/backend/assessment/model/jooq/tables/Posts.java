@@ -8,6 +8,11 @@ import com.varit.backend.assessment.model.jooq.Backend;
 import com.varit.backend.assessment.model.jooq.Indexes;
 import com.varit.backend.assessment.model.jooq.Keys;
 import com.varit.backend.assessment.model.jooq.tables.records.PostsRecord;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Function;
+
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Function4;
@@ -26,10 +31,6 @@ import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Function;
 
 
 /**

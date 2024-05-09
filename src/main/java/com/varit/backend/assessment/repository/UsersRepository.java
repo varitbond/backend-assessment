@@ -2,6 +2,7 @@ package com.varit.backend.assessment.repository;
 
 import com.varit.backend.assessment.exception.BusinessException;
 import com.varit.backend.assessment.exception.DataNotFoundException;
+import com.varit.backend.assessment.model.jooq.tables.Posts;
 import com.varit.backend.assessment.model.jooq.tables.Users;
 import com.varit.backend.assessment.model.jooq.tables.records.UsersRecord;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +43,14 @@ public class UsersRepository {
             log.error(msg, ex);
             throw new BusinessException(msg);
         }
+    }
+
+    public List<UsersRecord> getUserByPostId(int postId) {
+        log.debug("Start query get user by post id: {}", postId);
+        return dslContext.select(Users.USERS.fields())
+                .from(Users.USERS).innerJoin(Posts.POSTS).on(Users.USERS.ID.eq(Posts.POSTS.USER_ID))
+                .where(Posts.POSTS.ID.eq(postId)).fetchInto(Users.USERS);
+
     }
 
     @Transactional

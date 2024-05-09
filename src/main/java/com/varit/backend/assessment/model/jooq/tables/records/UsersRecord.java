@@ -5,13 +5,14 @@ package com.varit.backend.assessment.model.jooq.tables.records;
 
 
 import com.varit.backend.assessment.model.jooq.tables.Users;
+
+import java.math.BigDecimal;
+
 import org.jooq.Field;
 import org.jooq.Record1;
 import org.jooq.Record15;
 import org.jooq.Row15;
 import org.jooq.impl.UpdatableRecordImpl;
-
-import java.math.BigDecimal;
 
 
 /**

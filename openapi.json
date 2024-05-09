@@ -1,0 +1,1097 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "BackEnd Assessment API",
+    "description": "API for access users & posts resource with OIDC Authentication using Auth0.",
+    "contact": {
+      "name": "Varit Chamroonsawasdi",
+      "email": "varit.bond@gmail.com"
+    },
+    "version": "1.0.0-SNAPSHOT"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Posts",
+      "description": "Access to posts resource"
+    },
+    {
+      "name": "Users",
+      "description": "Access to users resource"
+    }
+  ],
+  "paths": {
+    "/users/update": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update user",
+        "description": "This api use for update user in users database.",
+        "operationId": "updateUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully update user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModelVoid"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "No changes detected when update user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "security_auth": []
+          }
+        ]
+      }
+    },
+    "/posts/update": {
+      "put": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Update post",
+        "description": "This api use for update post in posts database.",
+        "operationId": "updatePost",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully update post.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModelVoid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "No changes detected when update post.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Post not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "security_auth": []
+          }
+        ]
+      }
+    },
+    "/users/create": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create user",
+        "description": "This api use for create user in users database.",
+        "operationId": "createUser",
+        "requestBody": {
+          "description": "For id field is not required to create user. (Model re-use swagger will shown as all required.)",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully create user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModelCreateResourceResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "security_auth": []
+          }
+        ]
+      }
+    },
+    "/posts/create": {
+      "post": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Create post",
+        "description": "This api use for create post in posts database.",
+        "operationId": "createPost",
+        "requestBody": {
+          "description": "For id field is not required to create post. (Model re-use swagger will shown as all required.)",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully create post.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModelCreateResourceResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "User id for create post is not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "security_auth": []
+          }
+        ]
+      }
+    },
+    "/users/patch": {
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Patch user",
+        "description": "This api use for patch user in users database.",
+        "operationId": "patchUser",
+        "requestBody": {
+          "description": "Only id field is required to patch user. (Model re-use swagger will shown as all required.)",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "409": {
+            "description": "No changes detected when patch user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully patch user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModelVoid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "security_auth": []
+          }
+        ]
+      }
+    },
+    "/posts/patch": {
+      "patch": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Patch post",
+        "description": "This api use for patch post in posts database.",
+        "operationId": "patchPost",
+        "requestBody": {
+          "description": "Only id field is required to patch post. (Model re-use swagger will shown as all required.)",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "409": {
+            "description": "No changes detected when patch post.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully patch post.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModelVoid"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Post not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "security_auth": []
+          }
+        ]
+      }
+    },
+    "/users/get": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get all Users",
+        "description": "This endpoint retrieves all users.",
+        "operationId": "getAllUsers",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved all users.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModelListUser"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "security_auth": []
+          }
+        ]
+      }
+    },
+    "/users/get/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get User By Id",
+        "description": "This endpoint retrieves user by using id.",
+        "operationId": "getUserById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "Found more than one user on the same id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModelUser"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "security_auth": []
+          }
+        ]
+      }
+    },
+    "/users/get/by-postid": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get User By Post id",
+        "description": "This endpoint retrieves user by using post id.",
+        "operationId": "getUserByPostId",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModelListUser"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "security_auth": []
+          }
+        ]
+      }
+    },
+    "/posts/get": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Get all Posts",
+        "description": "This endpoint retrieves all posts.",
+        "operationId": "getAllPosts",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved all posts.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModelListPost"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "security_auth": []
+          }
+        ]
+      }
+    },
+    "/posts/get/{id}": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Get Post By Id",
+        "description": "This endpoint retrieves post by using id.",
+        "operationId": "getPostById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved post.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModelPost"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Found more than one post on the same id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Post not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "security_auth": []
+          }
+        ]
+      }
+    },
+    "/posts/get/by-userid": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Get Post By userId",
+        "description": "This endpoint retrieves post by using user id.",
+        "operationId": "getPostByUserId",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved post.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModelListPost"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "security_auth": []
+          }
+        ]
+      }
+    },
+    "/users/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete user",
+        "description": "This api use for delete user in users database.",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully delete user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModelVoid"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "No changes detected when delete user or user not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "security_auth": []
+          }
+        ]
+      }
+    },
+    "/posts/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Delete post",
+        "description": "This api use for delete post in posts database.",
+        "operationId": "deletePost",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "No changes detected when delete post or post not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully delete post.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModelVoid"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "security_auth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Address": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "type": "string"
+          },
+          "suite": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "zipcode": {
+            "type": "string"
+          },
+          "geo": {
+            "$ref": "#/components/schemas/Geo"
+          }
+        }
+      },
+      "Company": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "catchPhrase": {
+            "type": "string"
+          },
+          "bs": {
+            "type": "string"
+          }
+        }
+      },
+      "Geo": {
+        "type": "object",
+        "properties": {
+          "lat": {
+            "type": "string"
+          },
+          "lng": {
+            "type": "string"
+          }
+        }
+      },
+      "User": {
+        "required": [
+          "email",
+          "id",
+          "name",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "website": {
+            "type": "string"
+          },
+          "company": {
+            "$ref": "#/components/schemas/Company"
+          }
+        }
+      },
+      "ResponseModel": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/ResponseStatus"
+          },
+          "data": {
+            "type": "object"
+          }
+        }
+      },
+      "ResponseStatus": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        }
+      },
+      "ResponseModelVoid": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/ResponseStatus"
+          },
+          "data": {
+            "type": "object"
+          }
+        }
+      },
+      "Post": {
+        "required": [
+          "body",
+          "id",
+          "title",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 1
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "example": "Post title"
+          },
+          "body": {
+            "type": "string",
+            "example": "Post body"
+          }
+        }
+      },
+      "CreateResourceResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResponseModelCreateResourceResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/ResponseStatus"
+          },
+          "data": {
+            "$ref": "#/components/schemas/CreateResourceResponse"
+          }
+        }
+      },
+      "ResponseModelListUser": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/ResponseStatus"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        }
+      },
+      "ResponseModelUser": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/ResponseStatus"
+          },
+          "data": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "ResponseModelListPost": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/ResponseStatus"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Post"
+            }
+          }
+        }
+      },
+      "ResponseModelPost": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/ResponseStatus"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Post"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "security_auth": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "http://localhost:3000/login",
+            "scopes": {
+              "read/write": "Read & Write scope"
+            }
+          }
+        }
+      }
+    }
+  }
+}

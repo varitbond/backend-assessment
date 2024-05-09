@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "BackEnd Assessment API",
-    "description": "API for access users & posts resource with OIDC Authentication using Auth0.",
+    "description": "Backend - Rest API project to access resource on database develop with Java17 + Spring boot 3 with OpenID Connect (OIDC) authentication",
     "contact": {
       "name": "Varit Chamroonsawasdi",
       "email": "varit.bond@gmail.com"
@@ -54,26 +54,6 @@
               }
             }
           },
-          "409": {
-            "description": "No changes detected when update user.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseModel"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Missing required fields.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseModel"
-                }
-              }
-            }
-          },
           "404": {
             "description": "User not found.",
             "content": {
@@ -86,6 +66,26 @@
           },
           "500": {
             "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "No changes detected when update user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required fields.",
             "content": {
               "application/json": {
                 "schema": {
@@ -121,12 +121,32 @@
           "required": true
         },
         "responses": {
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
           "200": {
             "description": "Successfully update post.",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseModelVoid"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Post not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
                 }
               }
             }
@@ -143,26 +163,6 @@
           },
           "409": {
             "description": "No changes detected when update post.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseModel"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Post not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseModel"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
@@ -199,22 +199,22 @@
           "required": true
         },
         "responses": {
-          "201": {
-            "description": "Successfully create user.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseModelCreateResourceResponse"
-                }
-              }
-            }
-          },
           "500": {
             "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Successfully create user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModelCreateResourceResponse"
                 }
               }
             }
@@ -257,8 +257,8 @@
               }
             }
           },
-          "409": {
-            "description": "User id for create post is not exist.",
+          "500": {
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
@@ -267,8 +267,8 @@
               }
             }
           },
-          "500": {
-            "description": "Internal server error.",
+          "409": {
+            "description": "User id for create post is not exist.",
             "content": {
               "application/json": {
                 "schema": {
@@ -305,8 +305,18 @@
           "required": true
         },
         "responses": {
-          "409": {
-            "description": "No changes detected when patch user.",
+          "404": {
+            "description": "User not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
@@ -335,18 +345,8 @@
               }
             }
           },
-          "404": {
-            "description": "User not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseModel"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error.",
+          "409": {
+            "description": "No changes detected when patch user.",
             "content": {
               "application/json": {
                 "schema": {
@@ -393,8 +393,8 @@
               }
             }
           },
-          "400": {
-            "description": "Missing required fields.",
+          "500": {
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
@@ -423,8 +423,8 @@
               }
             }
           },
-          "500": {
-            "description": "Internal server error.",
+          "400": {
+            "description": "Missing required fields.",
             "content": {
               "application/json": {
                 "schema": {
@@ -498,8 +498,18 @@
           }
         ],
         "responses": {
-          "409": {
-            "description": "Found more than one user on the same id.",
+          "404": {
+            "description": "User not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
@@ -518,18 +528,8 @@
               }
             }
           },
-          "404": {
-            "description": "User not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseModel"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error.",
+          "409": {
+            "description": "Found more than one user on the same id.",
             "content": {
               "application/json": {
                 "schema": {
@@ -566,22 +566,22 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Successfully retrieved user.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseModelListUser"
-                }
-              }
-            }
-          },
           "500": {
             "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModelListUser"
                 }
               }
             }
@@ -661,8 +661,8 @@
               }
             }
           },
-          "409": {
-            "description": "Found more than one post on the same id.",
+          "500": {
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
@@ -681,8 +681,8 @@
               }
             }
           },
-          "500": {
-            "description": "Internal server error.",
+          "409": {
+            "description": "Found more than one post on the same id.",
             "content": {
               "application/json": {
                 "schema": {
@@ -767,6 +767,16 @@
           }
         ],
         "responses": {
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
           "200": {
             "description": "Successfully delete user.",
             "content": {
@@ -779,16 +789,6 @@
           },
           "409": {
             "description": "No changes detected when delete user or user not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseModel"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
@@ -825,6 +825,16 @@
           }
         ],
         "responses": {
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          },
           "409": {
             "description": "No changes detected when delete post or post not found.",
             "content": {
@@ -841,16 +851,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseModelVoid"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseModel"
                 }
               }
             }

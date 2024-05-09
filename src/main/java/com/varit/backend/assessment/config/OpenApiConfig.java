@@ -14,7 +14,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
         info = @Info(
                 title = "BackEnd Assessment API",
                 version = "1.0.0-SNAPSHOT",
-                description = "API for access users & posts resource with OIDC Authentication using Auth0.",
+                description = "Backend - Rest API project to access resource on database develop with Java17 + Spring boot 3 with OpenID Connect (OIDC) authentication",
                 contact = @Contact(
                         name = "Varit Chamroonsawasdi",
                         email = "varit.bond@gmail.com"

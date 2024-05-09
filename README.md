@@ -1,7 +1,7 @@
 # Backend-Assessment
 
 Backend - Rest API project to access resource on database 
-develop with Java17 + Spring boot3 with OpenID Connect (OIDC) authentication
+develop with Java17 + Spring boot 3 with OpenID Connect (OIDC) authentication
 
 ## Description
 There 2 API routes 

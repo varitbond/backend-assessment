@@ -13,21 +13,23 @@ There 2 API routes
 
 ### Every route got mechanisms as below
 
-* Getting a resource GET /get/{id}
+* Get a resource GET /get/{id}
 
-* Listing all resources GET /get
+* List all resources GET /get
 
-* Creating a resource POST /create 
+* Create a resource POST /create 
 
-* Updating a resource PUT /update 
+* Update a resource PUT /update 
 
-* Patching a resource PATCH /patch
+* Patch a resource PATCH /patch
 
-* Deleting a resource DELETE /delete
+* Delete a resource DELETE /delete
 
-* Filtering a resources GET /get/by-{another_resource_id}
+* Filter a resources GET /get/by-{another_resource_id}
 
 All resources API in this server is protected by OpenID Connect (OIDC) with Bearer authentication method
+
+For more information please see `Swagger-ui` or `example-curl.sh`
 
 
 ## Getting Started

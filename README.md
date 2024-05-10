@@ -34,8 +34,8 @@ For more information please see `Swagger-ui` or `example-curl.sh`
 
 ## Getting Started
 ### Dependencies
-* Java JDK 17 (Eclipse Temurin™ 17)
-* MySQL 8.0 
+* Java JDK 17 (Recommend Eclipse Temurin™ 17)
+* MySQL 8.0 (Recommend Docker mysql/mysql-server)
 * Apache Maven Command
 
 ### Installing
